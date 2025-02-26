@@ -23,7 +23,9 @@ const Whiteboard = () => {
     // Fetch existing drawing via API
     const fetchDrawings = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/drawings");
+        const response = await fetch(
+          "https://drawboard-cfr8.onrender.com/api/drawings"
+        );
         const data = await response.json();
         if (data.length > 0) {
           data.forEach(drawPath);
