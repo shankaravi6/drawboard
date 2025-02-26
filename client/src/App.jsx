@@ -49,8 +49,6 @@ const App = () => {
             <h2 className="text-xl font-bold text-cyan-300 drop-shadow-md">
               DrawBoard
             </h2>
-
-            {/* Exit Button */}
             <button
               onClick={handleExit}
               className="px-5 py-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-lg shadow-md hover:shadow-cyan-500/50 hover:from-cyan-600 hover:to-teal-600 transition-all duration-300"

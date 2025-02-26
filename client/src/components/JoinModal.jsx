@@ -13,7 +13,7 @@ const JoinModal = ({ setUser }) => {
     if (name.trim()) {
       localStorage.setItem("username", name);
       setUser(name);
-      socket.emit("userJoined", name); // Notify server
+      socket.emit("userJoined", name);
     }
   };
 

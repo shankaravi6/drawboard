@@ -15,13 +15,11 @@ const io = new Server(server, {
   },
 });
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
 console.log("MongoDB URI:", process.env.MONGO_URI);
 
-// MongoDB Connection
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -39,7 +37,6 @@ const Drawing = mongoose.model("Drawing", DrawingSchema);
 let users = 0;
 let drawingHistory = [];
 
-// API to fetch existing drawing
 app.get("/api/drawings", async (req, res) => {
   try {
     const savedDrawing = await Drawing.findOne();
@@ -55,27 +52,23 @@ io.on("connection", async (socket) => {
   users++;
   io.emit("userCount", users);
 
-  // Load existing drawing from DB
   const savedDrawing = await Drawing.findOne();
   if (savedDrawing) {
     drawingHistory = savedDrawing.paths;
     socket.emit("loadCanvas", drawingHistory);
   }
 
-  // Handle user joining
   socket.on("userJoined", (username) => {
     socket.username = username;
     console.log(`${username} joined`);
     io.emit("notification", `${username} has joined the whiteboard`);
   });
 
-  // Handle user leaving
   socket.on("userLeft", (username) => {
     console.log(`${username} left`);
     io.emit("notification", `${username} has left the whiteboard`);
   });
 
-  // Handle disconnect
   socket.on("disconnect", () => {
     users--;
     io.emit("userCount", users);
@@ -85,12 +78,9 @@ io.on("connection", async (socket) => {
     }
   });
 
-  // Listen for drawing events and save to DB instantly
   socket.on("draw", async (data) => {
     drawingHistory.push(data);
     socket.broadcast.emit("draw", data);
-
-    // Save updated drawing history to MongoDB immediately
     try {
       await Drawing.updateOne({}, { paths: drawingHistory }, { upsert: true });
     } catch (error) {
@@ -98,7 +88,6 @@ io.on("connection", async (socket) => {
     }
   });
 
-  // Clear Canvas Event
   socket.on("clearCanvas", async () => {
     drawingHistory = [];
     try {

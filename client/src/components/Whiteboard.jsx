@@ -23,13 +23,14 @@ const Whiteboard = () => {
     ctx.lineJoin = "round";
     ctxRef.current = ctx;
 
-    // Fetch existing drawing via API
     const fetchDrawings = async () => {
       try {
         const response = await fetch(
           "https://drawboard-cfr8.onrender.com/api/drawings"
         );
         const data = await response.json();
+        console.log("existing data", data);
+
         if (data.length > 0) {
           data.forEach(drawPath);
         }
@@ -40,7 +41,6 @@ const Whiteboard = () => {
 
     fetchDrawings();
 
-    // Listen for real-time updates
     socket.on("loadCanvas", (drawingHistory) => {
       drawingHistory.forEach(drawPath);
     });
@@ -87,7 +87,6 @@ const Whiteboard = () => {
     setDrawing(false);
     ctxRef.current.closePath();
 
-    // Save and send the full path to server
     if (path.length > 0) {
       socket.emit("draw", path);
     }
@@ -128,9 +127,7 @@ const Whiteboard = () => {
         className="border border-gray-300 shadow-md rounded-lg"
       />
 
-      {/* Toolbar */}
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white p-3 rounded-lg shadow-lg flex gap-4 items-center">
-        {/* Color Picker */}
         <input
           type="color"
           value={color}
@@ -138,7 +135,6 @@ const Whiteboard = () => {
           className="w-10 p-1 h-10 rounded-md border border-gray-300 cursor-pointer"
         />
 
-        {/* Brush Size */}
         <input
           type="range"
           min="1"
@@ -148,7 +144,6 @@ const Whiteboard = () => {
           className="w-24 cursor-pointer"
         />
 
-        {/* Clear Button */}
         <button
           onClick={clearCanvas}
           className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition"
