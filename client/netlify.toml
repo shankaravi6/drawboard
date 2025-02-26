@@ -1,0 +1,6 @@
+[[redirects]]
+  from = "/socket.io/*"
+  to = "https://drawboard-cfr8.onrender.com/socket.io/:splat"
+  status = 200
+  force = true
+  headers = { Connection = "Upgrade", Upgrade = "websocket" }
