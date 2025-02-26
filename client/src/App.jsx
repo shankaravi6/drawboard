@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://drawboard-cfr8.onrender.com");
 
 const App = () => {
   const [user, setUser] = useState(localStorage.getItem("username") || null);
