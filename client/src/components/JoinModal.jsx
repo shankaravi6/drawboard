@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("https://drawboard-cfr8.onrender.com", {
-  transports: ["websocket"],
-  withCredentials: true,
-});
+const socket = io("https://drawboard-cfr8.onrender.com");
 
 const JoinModal = ({ setUser }) => {
   const [name, setName] = useState("");

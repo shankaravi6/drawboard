@@ -1,10 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("https://drawboard-cfr8.onrender.com", {
-  transports: ["websocket"],
-  withCredentials: true,
-});
+const socket = io("https://drawboard-cfr8.onrender.com");
 
 const Whiteboard = () => {
   const canvasRef = useRef(null);
