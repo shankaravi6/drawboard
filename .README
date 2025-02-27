@@ -29,9 +29,13 @@ CORS and dotenv for secure environment setup
 
 Deployment
 
-Frontend: Deployed on Netlify
+Frontend: Deployed on Netlify (https://drawboardhyring.netlify.app/)
 
-Backend: Deployed on Render
+Backend: Deployed on Render (https://drawboard-cfr8.onrender.com)
+
+NOTE: First time API request on Render is slow and takes a few minutes because I am using the free plan, which causes Render to put the API into a freeze state.
+
+
 
 
 STEP BY STEP IMPLEMENTATION 
