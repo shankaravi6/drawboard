@@ -1,1 +1,95 @@
-.
+OVERVIEW 
+
+Real-time collaborative whiteboard where multiple users can join, draw, and see each other's drawings in real time. The project is built using React.js, Node.js, Express.js, MongoDB, and Socket.io for real-time communication.
+
+
+TECH STACK
+
+Frontend (React.js)
+
+React.js with functional components
+
+Tailwind CSS for styling
+
+Socket.io-client for real-time communication
+
+React Toastify for notifications
+
+
+Backend (Node.js + Express.js)
+
+Express.js for API and WebSocket handling
+
+Socket.io for real-time drawing updates
+
+MongoDB (with Mongoose) for storing drawings
+
+CORS and dotenv for secure environment setup
+
+
+Deployment
+
+Frontend: Deployed on Netlify
+
+Backend: Deployed on Render
+
+
+STEP BY STEP IMPLEMENTATION 
+
+Backend Setup
+
+1. Create a Node.js API 
+
+2. Install dependencies: express, mongoose, socket.io, cors, dotenv.
+
+3. Set up Express server and MongoDB connection.
+
+4. Create Drawing model (MongoDB schema).
+
+5. Implement API to fetch saved drawings.
+
+6. Set up WebSocket (Socket.io) for:
+
+7. User connections/disconnections.
+
+8. Broadcasting draw events.
+
+9. Saving drawings.
+
+10. Clear canvas functionality.
+
+11. Start backend server on port 5000
+
+
+Frontend Setup
+
+1. Create a React app with vite and install dependencies.
+
+2. Modern UI Enhancements (Glassmorphism & Gradients)
+
+3. Set up WebSocket connection in App.js.
+
+4. Implement JoinModal for user authentication.
+
+5. Create Whiteboard component with:
+
+6. Canvas API for drawing.
+
+7. Socket.io for real-time updates.
+
+8. Clear canvas functionality.
+
+9. Display real-time user count and notifications.
+
+
+Deployment
+
+1. Deploy backend on Render/Vercel.
+
+2. Deploy frontend on Netlify/Vercel.
+
+   Netlify doesn’t support WebSockets natively.
+
+   Proxy Socket.io requests to backend using netlify.toml.
+
+3. Update frontend WebSocket URL with deployed backend URL.
